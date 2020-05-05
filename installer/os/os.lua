@@ -4,7 +4,7 @@ print("Working")
 
 -- vars
 local bootimage = nil
-local folder = nil
+local fimg
 local startmenu = false
 
 local w, h = term.getSize()
@@ -14,7 +14,7 @@ local bimagewidth, bimageheight = 0, 0
 
 local curdir = shell.dir()
 local bootlogo = fs.combine(curdir, "os/backgrounds/bootlogo.nfp")
-local folderpath = fs.combine(curdir, "os/background/foldericon.nfp")
+local fimgpath = fs.combine(curdir, "os/backgrounds/foldericon.nfp")
 
 -- clear function
 function clear()
@@ -36,6 +36,7 @@ end
 function loadBootImage()
 
     bootimage = paintutils.loadImage(bootlogo)
+	fimg = paintutils.loadImage(fimgpath)
     bimagewidth, bimageheight = 17, 6
     
     sleep(.1)
@@ -63,9 +64,7 @@ end
 -- draw icons function
 function drawDesktopIcons()
 
-    term.setCursorPos(2, 2)
-    paintutils.drawImage(foldericon, 2, 2)
-    term.setCursorPos(0, 0)
+	paintutils.drawImage(fimg, 2, 2)
 
 end
 
@@ -147,7 +146,6 @@ end
 -- run function
 function run()
 
-	folder = paintutils.loadImage(folderpath)
     sleep(5)
     clear()
     
