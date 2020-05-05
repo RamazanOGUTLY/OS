@@ -6,7 +6,7 @@ To download. download the following dependicies with. in computercraft terminal.
 
 once you done that do:
 
---- github ramazanogutlu os . installer .
+--- github RamazanOGUTLY os . installer .
 
 then you type and click enter:
 
