@@ -15,6 +15,11 @@ if read == "y" or read == "Y" then
 
     term.clear()
     term.setCursorPos(1, 1)
+	
+	fs.delete("startup.lua")
+	fs.delete("os.lua")
+	fs.delete("os/")
+	fs.delete("uninstall.lua")
     
     fs.copy(fs.combine(osfiles, "startup.lua"), "startup.lua")
     print("installing startup")
