@@ -30,7 +30,7 @@ while true do
 
     term.redirect(termb)
     term.setCursorPos(0, 0)
-    sleep(.1)
+    sleep(.0)
     term.clear()
     
 end

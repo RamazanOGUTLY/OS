@@ -6,11 +6,16 @@ print("Working")
 local bootimage = nil
 local fimg
 local startmenu = false
+local programs = false
+local prevterm = term.current()
 
 local w, h = term.getSize()
 local x, y = term.getCursorPos()
 
 local bimagewidth, bimageheight = 0, 0
+
+local fimagewidth = 7
+local fimageheight = 5
 
 local curdir = shell.dir()
 local bootlogo = fs.combine(curdir, "os/backgrounds/bootlogo.nfp")
@@ -36,7 +41,7 @@ end
 function loadBootImage()
 
     bootimage = paintutils.loadImage(bootlogo)
-	fimg = paintutils.loadImage(fimgpath)
+	   fimg = paintutils.loadImage(fimgpath)
     bimagewidth, bimageheight = 17, 6
     
     sleep(.1)
@@ -64,7 +69,7 @@ end
 -- draw icons function
 function drawDesktopIcons()
 
-	paintutils.drawImage(fimg, 2, 2)
+    paintutils.drawImage(fimg, 2, 2)
 
 end
 
@@ -116,6 +121,14 @@ function event()
             
             end
         
+        elseif button == 1 and x >= 2 and x <= fimagewidth+1 and y >= 2 and y <= fimageheight+1 then
+        
+            if programs == false then
+                programs = true
+            else
+                programs = false
+            end
+        
         end
         
     elseif event == "key" then
@@ -137,6 +150,25 @@ function startMenu()
         term.write("Reboot")
         term.setCursorPos(1, h-3)
         term.write("Help")
+        term.setCursorPos(0, 0)
+    
+    end
+    
+    if programs == true then
+    
+        local program = window.create(term.current(), 10, 0, 25, 15)
+        
+        term.redirect(program)
+        term.setCursorPos(3, fimageheight-1)
+        
+        term.setBackgroundColor(colors.white)
+        term.setTextColor(colors.black)
+        term.clear()
+        
+        print("hello")
+        sleep(.01)
+        
+        term.redirect(prevterm)
         term.setCursorPos(0, 0)
     
     end
